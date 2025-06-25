@@ -17,8 +17,9 @@ def api_response(prompt, temperature=0.8, max_tokens=100):
             max_tokens=max_tokens
         )
         return response.choices[0].message.content.strip()
-    except Exception as e:
-        return f"There was an API error: {e}"
+    except Exception:
+        print("API call error: ")
+        return None
 
 choice = int(input("Welcome to the AI Text Generator! Choose an option: 1. Generate Text 2. Exit: "))
 
@@ -30,7 +31,7 @@ while choice != 2:
             print("Prompt is empty! \n")
         else:
             try:
-                temp = input("Set temperature or leave blank for deault: ")
+                temp = input("Set temperature or leave blank for default: ")
                 if temp == "":
                     temperature = 0.7
                 else:
@@ -57,8 +58,3 @@ while choice != 2:
     choice = int(input("Try again: 1. Generate Text 2. Exit: "))
 
 print("Goodbye!")
-
-
-    choice = int(input("Try again: 1. Generate Text 2. Exit: "))
-
-print("Thanks for using the AI Text Generator!")
